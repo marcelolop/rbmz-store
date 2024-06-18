@@ -1,6 +1,3 @@
-import memberOne from '../../media/images/member-1.jpg';
-import memberTwo from '../../media/images/member-2.jpg';
-import memberThree from '../../media/images/member-3.jpg';
 import memberFour from '../../media/images/member-4.jpg';
 
 function Members() {
@@ -17,25 +14,25 @@ function Members() {
                 <p>including creative thinkers and analytical problem solvers</p>
             </div>
             <div className='members'>
-                <div>
-                    <img src={memberOne} alt='first member'/>
+                <div className='w-[25%]'>
+                    <img src='https://avatars.githubusercontent.com/u/19392250?v=4' alt='first member'/>
                     <p className='name'>Jessica Williams</p>
                     <p className='position'>Sales Strategist</p>
                     <p className='history'>Previously worked at Facebook and Stripe as a lead software engineer</p>
                 </div>
-                <div>
-                    <img src={memberTwo} alt='second member'/>
+                <div className='w-[25%]'>
+                    <img src='https://avatars.githubusercontent.com/u/146019823?v=4' alt='second member'/>
                     <p className='name'>Simon Monroe</p>
                     <p className='position'>Founder & CEO</p>
                     <p className='history'>Founded and developed rbmz back in 2018 and now function as CEO</p>
                 </div>
-                <div>
-                    <img src={memberThree} alt='third member'/>
+                <div className='w-[25%]'>
+                    <img src='https://avatars.githubusercontent.com/u/111240376?v=4' alt='third member'/>
                     <p className='name'>Robert Todd</p>
                     <p className='position'>Software Engineer</p>
                     <p className='history'>Previously worked at Facebook and Stripe as a lead software engineer</p>
                 </div>
-                <div>
+                <div className='w-[25%]'>
                     <img src={memberFour} alt='fourth member'/>
                     <p className='name'>Ted Norton</p>
                     <p className='position'>Sales Manager</p>
