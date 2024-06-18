@@ -53,5 +53,7 @@ code {
 }
 
 
-
+.bg-gradient-to-b {
+  background-image: linear-gradient(to bottom, #ffffff, #CCE0FF);
+}
 

@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaShoppingCart } from "react-icons/fa";
+import { CartContext } from "../../../components/ui/general/CartProvider";
 
-function Cart() {
+function Cart({ hover }) {
+  const { count } = useContext(CartContext);
+
   return (
-    <div className="relative flex">
-      <FaShoppingCart className="text-black cursor-pointer hover:text-blue-500 w-6 h-6" />
-      <span className="absolute bottom-4 left-4 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-        3
+    <div className="relative flex items-center justify-center">
+      <FaShoppingCart
+        className={`cursor-pointer w-5 h-5  ${
+          hover ? "text-white" : "text-black"
+        }`}
+      />
+      <span className="absolute mb-[6px] bottom-2 left-4 bg-blue-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+        {count}
       </span>
-      <span className="ml-2 font-[600]">Cart</span>
     </div>
   );
 }

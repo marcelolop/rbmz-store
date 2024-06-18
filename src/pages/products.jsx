@@ -2,8 +2,8 @@ import React, { useReducer, useEffect } from "react";
 import CategoryFilter from "../components/products/CategoryFilter";
 import ProductCard from "../components/products/ProductCard";
 import ProductsSearchBar from "../components/products/ProductsSearchBar";
-import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const initialState = {
   products: [],
@@ -99,70 +99,69 @@ function Products() {
   );
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex">
-        <CategoryFilter
-          category={state.category}
-          setCategory={handleCategoryChange}
-        />
-        <div className="flex-1 ml-4">
-          <ProductsSearchBar
-            searchTerm={state.searchTerm}
-            setSearchTerm={(term) =>
-              dispatch({ type: "SET_SEARCH_TERM", payload: term })
-            }
-            category={state.category || "All Products"}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.5 }}
+    >
+      <div className="container mx-auto p-4">
+        <div className="flex">
+          <CategoryFilter
+            category={state.category}
+            setCategory={handleCategoryChange}
           />
-          <AnimatePresence>
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1 }}
-            >
+          <div className="flex-1 ml-4">
+            <ProductsSearchBar
+              searchTerm={state.searchTerm}
+              setSearchTerm={(term) =>
+                dispatch({ type: "SET_SEARCH_TERM", payload: term })
+              }
+              category={state.category || "All Products"}
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {paginate(state.filteredProducts).map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
-            </motion.div>
-          </AnimatePresence>
-          {state.loading && (
-            <div className="text-center mt-4">
-              <span>Loading...</span>
             </div>
-          )}
-          <div className="flex justify-center mt-4">
-            <button
-              className="mx-1 px-3 py-1 border rounded bg-transparent text-black hover:bg-blue-600 hover:text-white transition-colors duration-300"
-              disabled={state.currentPage === 1}
-              onClick={() => handlePageChange(state.currentPage - 1)}
-            >
-              Previous
-            </button>
-            {[...Array(totalPages).keys()].map((pageNumber) => (
+            {state.loading && (
+              <div className="text-center mt-4">
+                <span>Loading...</span>
+              </div>
+            )}
+            <div className="flex justify-center mt-4">
               <button
-                key={pageNumber}
-                className={`mx-1 px-3 py-1 border rounded ${
-                  state.currentPage === pageNumber + 1
-                    ? "bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300"
-                    : ""
-                }`}
-                onClick={() => handlePageChange(pageNumber + 1)}
+                className="mx-1 px-3 py-1 border rounded bg-transparent text-black hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                disabled={state.currentPage === 1}
+                onClick={() => handlePageChange(state.currentPage - 1)}
               >
-                {pageNumber + 1}
+                Previous
               </button>
-            ))}
-            <button
-              className="mx-1 px-3 py-1 border rounded bg-transparent text-black hover:bg-blue-600 hover:text-white transition-colors duration-300"
-              disabled={state.currentPage === totalPages}
-              onClick={() => handlePageChange(state.currentPage + 1)}
-            >
-              Next
-            </button>
+              {[...Array(totalPages).keys()].map((pageNumber) => (
+                <button
+                  key={pageNumber}
+                  className={`mx-1 px-3 py-1 border rounded ${
+                    state.currentPage === pageNumber + 1
+                      ? "bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300"
+                      : ""
+                  }`}
+                  onClick={() => handlePageChange(pageNumber + 1)}
+                >
+                  {pageNumber + 1}
+                </button>
+              ))}
+              <button
+                className="mx-1 px-3 py-1 border rounded bg-transparent text-black hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                disabled={state.currentPage === totalPages}
+                onClick={() => handlePageChange(state.currentPage + 1)}
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

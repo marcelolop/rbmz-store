@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "../ui/general/Cart";
 import SearchBar from "../ui/general/SearchBar";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaShoppingCart } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 function Header() {
@@ -12,8 +12,24 @@ function Header() {
     opacity: 0,
   });
 
+  const [accountCartPosition, setAccountCartPosition] = useState({
+    left: 0,
+    width: 0,
+    opacity: 0,
+  });
+
+  const [isCartHovered, setIsCartHovered] = useState(false);
+
+  // Função para resetar a posição do carrinho quando o mouse sai de Account
+  const resetCartPosition = () => {
+    setAccountCartPosition((pv) => ({
+      ...pv,
+      opacity: 0,
+    }));
+  };
+
   return (
-    <header className="bg-slate-50 p-4 w-full h-[100px] shadow-slate-200 shadow-3d flex items-center justify-center">
+    <header className=" bg-slate-300 p-4 w-full h-[100px] shadow-slate-200 shadow-3d flex items-center justify-center">
       <div className="container mx-auto grid grid-cols-3 gap-4 items-center">
         <div className="col-span-1 flex items-center">
           <Link
@@ -35,7 +51,7 @@ function Header() {
                 opacity: 0,
               }));
             }}
-            className="relative mx-auto flex w-fit rounded-full border- bg-white p-1"
+            className="relative mx-auto flex w-fit rounded-full border- bg-slate-200 p-1"
           >
             <Tab setPosition={setPosition} to="/">
               Home
@@ -52,16 +68,39 @@ function Header() {
             <Cursor position={position} />
           </ul>
         </nav>
-        <div className="col-span-1 gap-5 flex items-center justify-end space-x-4">
-          <SearchBar />
-          <Link className="flex text-black hover:text-blue-500" to="/login">
-            <FaUserAlt />
-            <span className="ml-2 font-[600]">Account</span>
-          </Link>
-          <Link className="text-black hover:text-blue-500" to="/cart">
-            <Cart />
-          </Link>
-        </div>
+        <nav className="col-span-1 gap-5 flex items-center justify-end space-x-4">
+          <ul
+            onMouseLeave={resetCartPosition}
+            className="relative mx-auto flex w-fit rounded-full border- bg-slate-200 p-1 items-center"
+          >
+            <Tab setPosition={setAccountCartPosition} to="/login">
+              <div className="flex items-center">
+                <FaUserAlt />
+                <span className="ml-2 font-[600]">Account</span>
+              </div>
+            </Tab>
+            <Tab
+              setPosition={setAccountCartPosition}
+              to="/cart"
+              onMouseEnter={() => {
+                console.log("Mouse entered");
+                setIsCartHovered(true);
+              }}
+              onMouseLeave={() => {
+                console.log("Mouse left");
+                setIsCartHovered(false);
+              }}
+            >
+              <div className="relative flex items-center hover:text-white justify-center">
+                <Cart
+                  className="cursor-pointer w-5 h-5 mb-[6px] hover:text-white"
+                />
+              </div>
+            </Tab>
+            <SearchBar />
+            <Cursor position={accountCartPosition} />
+          </ul>
+        </nav>
       </div>
     </header>
   );
@@ -84,7 +123,7 @@ const Tab = ({ children, setPosition, to }) => {
           opacity: 1,
         });
       }}
-      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-black font-[600] hover:text-blue-500 transition-colors duration-500 md:px-5 md:py-3 md:text-base"
+      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-black font-[600] hover:text-white transition-colors duration-500 md:px-5 md:py-3 md:text-base"
     >
       <Link to={to}>{children}</Link>
     </li>
@@ -97,7 +136,7 @@ const Cursor = ({ position }) => {
       animate={{
         ...position,
       }}
-      className="absolute z-0 h-7 rounded-full bg-blue-500 md:h-12"
+      className="absolute z-0 h-7 rounded-full bg-blue-400 md:h-12"
     />
   );
 };
