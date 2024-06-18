@@ -29,7 +29,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-slate-50 p-4 w-full h-[100px] shadow-slate-200 shadow-3d flex items-center justify-center">
+    <header className=" bg-slate-300 p-4 w-full h-[100px] shadow-slate-200 shadow-3d flex items-center justify-center">
       <div className="container mx-auto grid grid-cols-3 gap-4 items-center">
         <div className="col-span-1 flex items-center">
           <Link
@@ -51,7 +51,7 @@ function Header() {
                 opacity: 0,
               }));
             }}
-            className="relative mx-auto flex w-fit rounded-full border- bg-white p-1"
+            className="relative mx-auto flex w-fit rounded-full border- bg-slate-200 p-1"
           >
             <Tab setPosition={setPosition} to="/">
               Home
@@ -71,9 +71,8 @@ function Header() {
         <nav className="col-span-1 gap-5 flex items-center justify-end space-x-4">
           <ul
             onMouseLeave={resetCartPosition}
-            className="relative mx-auto flex w-fit rounded-full border- bg-white p-1"
+            className="relative mx-auto flex w-fit rounded-full border- bg-slate-200 p-1 items-center"
           >
-            <SearchBar />
             <Tab setPosition={setAccountCartPosition} to="/login">
               <div className="flex items-center">
                 <FaUserAlt />
@@ -93,14 +92,12 @@ function Header() {
               }}
             >
               <div className="relative flex items-center hover:text-white justify-center">
-                <FaShoppingCart
-                  className= "cursor-pointer w-5 h-5 mb-[6px]"
+                <Cart
+                  className="cursor-pointer w-5 h-5 mb-[6px] hover:text-white"
                 />
-                <span className="absolute mb-[6px] bottom-4 left-4 bg-blue-500 text-white hover:bg-white hover:text-black text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  3
-                </span>
               </div>
             </Tab>
+            <SearchBar />
             <Cursor position={accountCartPosition} />
           </ul>
         </nav>

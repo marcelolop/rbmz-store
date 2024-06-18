@@ -4,6 +4,7 @@ import ShuffleHero from "../components/home/HeroBanner";
 import ProductCarousel from "../components/home/ProductCarousel";
 import CategoryCarousel from "../components/home/CategoryCarousel";
 import Brand from "../components/home/Brands";
+import { motion } from "framer-motion";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -18,12 +19,17 @@ function Home() {
   }, []);
 
   return (
-    <main>
+    <motion.main
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1.5 }}
+    >
       <ShuffleHero />
       <CategoryCarousel products={products} />
       <ProductCarousel products={products} />
       <Brand products={products}/>
-    </main>
+    </motion.main>
   );
 }
 
