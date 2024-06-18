@@ -6,7 +6,7 @@ function HeroBanner() {
   return (
     <>
     <section className="mb-16 bg-gradient-to-b font-sans">
-        <div className="flex flex-col items-center pt-16">
+        <div className="flex flex-col items-center pt-16 max-w-7xl mx-auto">
             <p className="text-blue-700 text-sm font-semibold pb-2">Shop Anytime, Anywhere</p>
             <div className="text-center">
                 <h1 className="text-4xl font-semibold leading-snug">We're a fun-loving global squad</h1>

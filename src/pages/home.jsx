@@ -4,6 +4,7 @@ import ShuffleHero from "../components/home/HeroBanner";
 import ProductCarousel from "../components/home/ProductCarousel";
 import CategoryCarousel from "../components/home/CategoryCarousel";
 import Brand from "../components/home/Brands";
+import Offers from "../components/home/Offers";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -18,11 +19,12 @@ function Home() {
   }, []);
 
   return (
-    <main>
+    <main className="font-sans">
       <ShuffleHero />
       <CategoryCarousel products={products} />
       <ProductCarousel products={products} />
       <Brand products={products}/>
+      <Offers />
     </main>
   );
 }

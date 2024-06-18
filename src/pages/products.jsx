@@ -4,6 +4,7 @@ import ProductCard from "../components/products/ProductCard";
 import ProductsSearchBar from "../components/products/ProductsSearchBar";
 import { AnimatePresence, motion } from "framer-motion";
 import { useParams } from "react-router-dom";
+import Offers from "../components/home/Offers";
 
 const initialState = {
   products: [],
@@ -99,6 +100,7 @@ function Products() {
   );
 
   return (
+    <>
     <div className="container mx-auto p-4">
       <div className="flex">
         <CategoryFilter
@@ -163,6 +165,8 @@ function Products() {
         </div>
       </div>
     </div>
+    <Offers />
+    </>
   );
 }
 
