@@ -7,7 +7,6 @@ import Contact from "./pages/contact";
 import ProductDetails from "./pages/productDetails";
 import Header from "./components/general/Header";
 import Footer from "./components/general/Footer";
-import "../src/styles/test.css";
 import { CartProvider } from "./components/ui/general/CartProvider";
 
 function App() {

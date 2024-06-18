@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import Modal from '../contact/ModalSubmit';
+import Modal from './ModalSubmit';
 
 function Form() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
