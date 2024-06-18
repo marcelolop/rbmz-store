@@ -14,3 +14,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+
+.hero {
+  background-image: url("https://images.pexels.com/photos/789822/pexels-photo-789822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: calc(80vh - 100px);
+  width: 100%;
+  position: relative;
+}
+
+.overlay {
+  mix-blend-mode: multiply;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(1, 1, 19, 0.5); 
+}
+
+.content-hero {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 40px;
+  line-height: 1.2;
+  padding: 25px;
+}
+
+.hero-section{
+  width: 100%;
+}
+
+
+
+
