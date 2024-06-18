@@ -4,6 +4,7 @@ import Cart from "../ui/general/Cart";
 import SearchBar from "../ui/general/SearchBar";
 import { FaUserAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import logo from "../../media/icons/logo.png";
 
 function Header() {
   const [position, setPosition] = useState({
@@ -35,10 +36,8 @@ function Header() {
             className="text-[50px] font-bold text-black hover:text-blue-500"
             to="/"
           >
-            <img
-              className="w-[50px] h-[50px] rounded-full"
-              src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
-              alt="logo"
+            <img src={logo} alt="logo" 
+            className="w-40 h-40 rounded-full"
             />
           </Link>
         </div>

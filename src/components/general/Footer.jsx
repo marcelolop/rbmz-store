@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import EmailSubscribeForm from "../ui/general/EmailSubscribeForm.jsx";
+import logo from "../../media/icons/logo.png";
 
 function Footer() {
   return (
@@ -11,7 +12,10 @@ function Footer() {
             className="text-[50px] font-bold text-black hover:text-blue-500 transition-colors duration-500"
             href="/"
           >
-          <Link className="text-black" to="/">Logo</Link>
+            <Link className="text-black" to="/">
+              <img src={logo} alt="logo" 
+            className="w-40 h-40 rounded-full"
+            /></Link>
           </a>
         </div>
         <div className="flex space-x-16">
