@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 function ProductCard({ product }) {
   return (
     <motion.div
-      className="p-4 rounded shadow-md flex flex-col items-center h-full"
+      className="p-4 rounded  flex flex-col items-center h-full"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -19,11 +19,12 @@ function ProductCard({ product }) {
         className="w-full h-48 object-contain mb-2"
       />
       <h2
-        className="text-lg font-bold mb-2 text-center truncate w-full"
+        className="text-lg font-bold mb-2 text-center w-full"
         title={product.title}
       >
         {product.title}
       </h2>
+      <div className="flex flex-row justify-between w-full m-3">
       <Rating
         count={5}
         value={product.rating ? product.rating.rate : 0}
@@ -36,23 +37,18 @@ function ProductCard({ product }) {
       <p className="text-black mb-2 text-xl font-semibold">
         ${product.price.toFixed(2)}
       </p>
-      <p
-        className="text-gray-600 text-xs mb-4 overflow-hidden text-ellipsis w-full max-h-16 flex-grow"
-        title={product.description}
-      >
-        {product.description}
-      </p>
+      </div>
       <div className="flex space-x-2 w-full justify-center mt-auto">
-        <Link
+        {/* <Link
           to={`/product/${product.id}`}
-          className="flex justify-center uppercase text-xs items-center bg-slate-500 text-white px-2 py-2 rounded hover:bg-slate-700 transition-colors duration-300 w-full h-full whitespace-nowrap sm:w-auto sm:whitespace-nowrap"
+          className="flex justify-center uppercase text-xs items-center bg-[#0b596e] text-white px-2 py-2 rounded hover:bg-[#0f6b85] transition-colors duration-300 w-full h-full whitespace-nowrap sm:w-auto sm:whitespace-nowrap"
         >
           View Details
-        </Link>
-        <button className="flex justify-center uppercase text- text-xs items-center bg-blue-500 text-white px-2 py-2 rounded hover:bg-blue-600 transition-colors duration-300 w-full h-full whitespace-nowrap">
+        </Link> */}
+        {/* <button className="flex justify-center uppercase text- text-xs items-center bg-blue-500 text-white px-2 py-2 rounded hover:bg-blue-600 transition-colors duration-300 w-full h-full whitespace-nowrap">
           <AiOutlineShoppingCart className="mr-2 h-6 w-6" />
           Add to Cart
-        </button>
+        </button> */}
       </div>
     </motion.div>
   );
