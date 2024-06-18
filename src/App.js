@@ -11,6 +11,7 @@ import "../src/styles/test.css";
 import { CartProvider } from "./components/ui/general/CartProvider";
 
 function App() {
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
