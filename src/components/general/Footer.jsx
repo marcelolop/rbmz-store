@@ -4,7 +4,7 @@ import EmailSubscribeForm from "../ui/general/EmailSubscribeForm.jsx";
 
 function Footer() {
   return (
-    <footer className=" bg-slate-300 p-8 w-full shadow-slate-200 shadow flex flex-col justify-between">
+    <footer className=" bg-gradient-to-b from-white to-blue-100 p-8 w-full flex flex-col justify-between">
       <div className="flex justify-center items-start gap-[200px]">
         <div className="flex items-center">
           <a

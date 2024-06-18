@@ -3,9 +3,8 @@ import CategoryFilter from "../components/products/CategoryFilter";
 import ProductCard from "../components/products/ProductCard";
 import ProductsSearchBar from "../components/products/ProductsSearchBar";
 import { useParams } from "react-router-dom";
-import Offers from "../components/home/Offers";
+import Offers from "../components/products/Offers";
 import { motion } from "framer-motion";
-
 
 const initialState = {
   products: [],
@@ -101,25 +100,12 @@ function Products() {
   );
 
   return (
-     <motion.div
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
     >
-    <div className="container mx-auto p-4">
-      <div className="flex">
-        <CategoryFilter
-          category={state.category}
-          setCategory={handleCategoryChange}
-        />
-        <div className="flex-1 ml-4">
-          <ProductsSearchBar
-            searchTerm={state.searchTerm}
-            setSearchTerm={(term) =>
-              dispatch({ type: "SET_SEARCH_TERM", payload: term })
-            }
-            category={state.category || "All Products"}
       <div className="container mx-auto p-4">
         <div className="flex">
           <CategoryFilter
@@ -176,8 +162,7 @@ function Products() {
           </div>
         </div>
       </div>
-    </div>
-    <Offers />
+      <Offers />
     </motion.div>
   );
 }

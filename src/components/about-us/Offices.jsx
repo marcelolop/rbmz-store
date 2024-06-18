@@ -1,13 +1,14 @@
 
 function Offices() {
   return (
-    <section className="mx-auto p-10 bg-blue-800 text-white font-sans pt-20 pb-20 mt-16">
+    <section className="mx-auto p-10 bg-blue-600 text-white font-sans pt-20 pb-20 mt-16">
         <div className="my-container w-[100%]">
             <div className="flex flex-col lg:flex-row justify-between w-[100%]">
                 <div className="mb-8 lg:mb-0 lg:w-1/3">
                     <p className="text-sm font-light mb-2">Our locations</p>
                     <h1 className="text-4xl font-bold mb-4">Visit our offices</h1>
-                    <p className="text-lg font-light">Find us at these locations.</p>
+                      <p className="text-lg font-light">Find us at these locations.</p>
+
                 </div>
                 <div className="flex flex-wrap lg:w-2/3 gap-36 justify-end">
                     <div className="flex flex-col gap-5 mr-20">

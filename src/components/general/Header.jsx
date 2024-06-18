@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "../ui/general/Cart";
 import SearchBar from "../ui/general/SearchBar";
-import { FaUserAlt, FaShoppingCart } from "react-icons/fa";
+import { FaUserAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 function Header() {
@@ -20,7 +20,6 @@ function Header() {
 
   const [isCartHovered, setIsCartHovered] = useState(false);
 
-  // Função para resetar a posição do carrinho quando o mouse sai de Account
   const resetCartPosition = () => {
     setAccountCartPosition((pv) => ({
       ...pv,
@@ -29,7 +28,7 @@ function Header() {
   };
 
   return (
-    <header className=" bg-slate-300 p-4 w-full h-[100px] shadow-slate-200 shadow-3d flex items-center justify-center">
+    <header className=" bg-gradient-to-t from-white to-blue-100  p-4 w-full h-[100px] shadow-slate-200 flex items-center justify-center">
       <div className="container mx-auto grid grid-cols-3 gap-4 items-center">
         <div className="col-span-1 flex items-center">
           <Link
@@ -51,7 +50,7 @@ function Header() {
                 opacity: 0,
               }));
             }}
-            className="relative mx-auto flex w-fit rounded-full border- bg-slate-200 p-1"
+            className="relative mx-auto flex w-fit rounded-full border- bg-gradient-to-t from-white to-blue-100  p-1"
           >
             <Tab setPosition={setPosition} to="/">
               Home
@@ -71,7 +70,7 @@ function Header() {
         <nav className="col-span-1 gap-5 flex items-center justify-end space-x-4">
           <ul
             onMouseLeave={resetCartPosition}
-            className="relative mx-auto flex w-fit rounded-full border- bg-slate-200 p-1 items-center"
+            className="relative mx-auto flex w-fit rounded-full border-bg-gradient-to-t from-white to-blue-100  p-1 items-center"
           >
             <Tab setPosition={setAccountCartPosition} to="/login">
               <div className="flex items-center">
