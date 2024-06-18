@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import ShuffleHero from "../components/home/HeroBanner";
+import ProductCarousel from "../components/home/ProductCarousel";
+import CategoryCarousel from "../components/home/CategoryCarousel";
+import Brand from "../components/home/Brands";
 
 function Home() {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await axios.get('https://fakestoreapi.com/products');
+      setProducts(response.data);
+    };
+
+    fetchProducts();
+  }, []);
+
   return (
     <main>
       <ShuffleHero />
+      <CategoryCarousel products={products} />
+      <ProductCarousel products={products} />
+      <Brand products={products}/>
     </main>
   );
 }
