@@ -33,7 +33,7 @@ function Members() {
                     <p className='history'>Previously worked at Facebook and Stripe as a lead software engineer</p>
                 </div>
                 <div className='w-[25%]'>
-                    <img src={memberFour} alt='fourth member'/>
+                    <img src='https://avatars.githubusercontent.com/u/146753820?v=4' alt='fourth member'/>
                     <p className='name'>Ted Norton</p>
                     <p className='position'>Sales Manager</p>
                     <p className='history'>Have helped sell clients products for over 8 years and directed sales teams</p>
