@@ -55,7 +55,11 @@ code {
 }
 
 .bg-gradient-to-b {
-  background-image: linear-gradient(to bottom, #ffffff, #e2eaf7);
+  background-image: linear-gradient(to bottom, #ffffff, #e8eef7);
+}
+
+.bg-gradient-to-t{
+  background-image: linear-gradient(to top, #ffffff, #e8eef7);
 }
 
 .my-container {

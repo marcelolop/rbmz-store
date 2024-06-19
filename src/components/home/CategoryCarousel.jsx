@@ -93,33 +93,25 @@ const CategoryCarousel = () => {
   };
 
   return (
-
     <div className="container mx-auto py-10 my-container">
-      <h2 className="text-start  text-2xl font-bold mb-8">See All Categories</h2>
+      <h2 className="text-start text-2xl font-bold mb-8">See All Categories</h2>
       <Slider {...settings}>
         {categories.map((category, index) => (
           <div key={index} className="p-4">
             <Link
-              to={`/categories/${category}`}
+              to={`/categories/${category.id}`}
               className="block bg-white p-4 rounded-lg h-96 w-100 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
+              style={{ backgroundColor: getCategoryColor(category.id) }}
             >
-              <h3
-                className="text-lg font-bold mb-2 line-clamp-1"
-                title={category}
-              >
-                <h3
-                  className="text-lg font-bold mb-2 line-clamp-1"
-                  title={category.name}
-                >
-                  {category.name}
-                </h3>
-                <div className="w-full h-48 flex items-center justify-center mb-4">
-                  <FontAwesomeIcon icon={icon} size="4x" />
-                </div>
-              </Link>
-            </div>
-          );
-        })}
+              <h3 className="text-lg font-bold mb-2 line-clamp-1" title={category.name}>
+                {category.name}
+              </h3>
+              <div className="w-full h-48 flex items-center justify-center mb-4">
+                <FontAwesomeIcon icon={getCategoryIcon(category.id)} size="4x" />
+              </div>
+            </Link>
+          </div>
+        ))}
       </Slider>
     </div>
   );

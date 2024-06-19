@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function Hero() {
   return (
     <>
-    <section className="bg-gradient-to-b from-white to-blue-100 h-[400px]">
+    <section className="bg-gradient-to-b h-[400px]">
         <div className="flex flex-col items-center pt-16 max-w-7xl mx-auto">
             <p className="text-blue-500 text-sm font-semibold pb-2">Shop Anytime, Anywhere</p>
             <div className="text-center">
