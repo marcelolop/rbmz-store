@@ -5,14 +5,14 @@ function Links() {
         <div className="flex flex-row items-center justify-center space-between gap-16 p-27 mt-0 mb-0 text-white font-sans">
             <div className="text-center h-500 w-200 flex flex-col gap-7">
                         <h1 href="#" className="block p-2">
-                            <i className="fas fa-comments text-3xl mr-3"></i>
-                            Chat to us
+                            <i className="fas fa-envelope text-3xl mr-3"></i>
+                            Email
                         </h1>
                         <h3 className="text-lg font-semibold text-gray-200">
-                            <p>Let's Connect and Chat!</p>
+                            <p> Drop us a message!</p>
                             <p>We'd love to hear from you!</p> 
                             <p className="mp-3">Your inquiries are important to us</p>
-                            <p className="items-center  text-blue-300"><li className='list-none'>Chat to us</li></p>
+                            <p className="items-center  text-blue-300"><li className='list-none'>info@rbmz.com</li></p>
                         </h3>
                 </div>
 
