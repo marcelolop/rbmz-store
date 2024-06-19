@@ -25,7 +25,7 @@ const Contact = () => {
         </section>
 
         {/* Contact Section */}
-        <section className="w-full h-screen text-center flex items-center justify-center">
+        <section className="w-full bg-gradient-to-b from-white to-blue-100 h-screen text-center flex items-center justify-center">
           <div className="flex flex-col md:flex-row items-start justify-start w-full h-full">
            <Aside />
 

@@ -37,9 +37,10 @@ function Header() {
             to="/"
           >
             <img src={logo} alt="logo" 
-            className="w-40 h-40 rounded-full"
+            className="w-28 h-28 rounded-full"
             />
           </Link>
+            <SearchBar />
         </div>
         <nav className="col-span-1 relative">
           <ul
@@ -49,7 +50,7 @@ function Header() {
                 opacity: 0,
               }));
             }}
-            className="relative mx-auto flex w-fit rounded-full border- bg-gradient-to-t from-white to-blue-100  p-1"
+            className="relative ml-auto mr-auto flex w-fit rounded-full border- bg-gradient-to-t from-white to-blue-100  p-1"
           >
             <Tab setPosition={setPosition} to="/">
               Home
@@ -95,7 +96,6 @@ function Header() {
                 />
               </div>
             </Tab>
-            <SearchBar />
             <Cursor position={accountCartPosition} />
           </ul>
         </nav>
