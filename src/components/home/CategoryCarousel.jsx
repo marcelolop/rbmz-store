@@ -4,25 +4,67 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeadphones,
+  faMicrochip,
+  faMobileAlt,
+  faTv,
+  faTheaterMasks,
+} from "@fortawesome/free-solid-svg-icons";
 
 const CategoryCarousel = () => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products/categories")
+      .get("https://eletronicproductsrbmz.azurewebsites.net/api/categories")
       .then((response) => setCategories(response.data))
       .catch((error) => console.error(error));
   }, []);
+
+  const getCategoryIcon = (categoryId) => {
+    switch (categoryId) {
+      case 3:
+        return faHeadphones;
+      case 4:
+        return faMicrochip;
+      case 5:
+        return faMobileAlt;
+      case 6:
+        return faTv;
+      case 7:
+        return faTheaterMasks;
+      default:
+        return faMicrochip; // Fallback icon
+    }
+  };
+
+  const getCategoryColor = (categoryId) => {
+    switch (categoryId) {
+      case 3:
+        return "#ffdddd";
+      case 4:
+        return "#ddffdd";
+      case 5:
+        return "#ddddff";
+      case 6:
+        return "#ffffdd";
+      case 7:
+        return "#ffddff";
+      default:
+        return "#ffffff"; // Fallback color
+    }
+  };
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Changed to 4
-    slidesToScroll: 4, // Changed to 4
-    swipeToSlide: true, // Allow slide with drag
-    draggable: false, // Disable card drag
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    swipeToSlide: true,
+    draggable: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -52,28 +94,32 @@ const CategoryCarousel = () => {
 
   return (
     <div className="container mx-auto py-10">
-      <h2 className="text-start  text-2xl font-bold mb-8">See All Categories</h2>
+      <h2 className="text-start text-2xl font-bold mb-8">See All Categories</h2>
       <Slider {...settings}>
-        {categories.map((category, index) => (
-          <div key={index} className="p-4">
-            <Link
-              to={`/categories/${category}`}
-              className="block bg-white p-4 rounded-lg h-96 w-72 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
-            >
-              <h3
-                className="text-lg font-bold mb-2 line-clamp-1"
-                title={category}
+        {categories.map((category, index) => {
+          const icon = getCategoryIcon(category.id);
+          const color = getCategoryColor(category.id);
+
+          return (
+            <div key={index} className="p-4">
+              <Link
+                to={`/categories/${category.id}`}
+                className="block bg-white p-4 rounded-lg h-96 w-100 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
+                style={{ backgroundColor: color }}
               >
-                {category}
-              </h3>
-              <img
-                src={`https://fakestoreapi.com/img/${category}.jpg`} // Replace with actual icon source
-                alt={category}
-                className="w-full h-48 object-contain mb-4"
-              />
-            </Link>
-          </div>
-        ))}
+                <h3
+                  className="text-lg font-bold mb-2 line-clamp-1"
+                  title={category.name}
+                >
+                  {category.name}
+                </h3>
+                <div className="w-full h-48 flex items-center justify-center mb-4">
+                  <FontAwesomeIcon icon={icon} size="4x" />
+                </div>
+              </Link>
+            </div>
+          );
+        })}
       </Slider>
     </div>
   );

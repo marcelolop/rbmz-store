@@ -52,7 +52,7 @@ function SearchBar() {
     <div className="relative w-full">
       <form
         onSubmit={handleSearchSubmit}
-        className={`flex items-center overflow-hidden transition-colors duration-700 w-72 mx-auto ${
+        className={`flex items-center overflow-hidden transition-colors duration-700 w-100  ${
           isFocused ? "border-blue-500" : "border-gray-200"
         }`}
         onFocus={handleFocus}

@@ -14,7 +14,7 @@ function Footer() {
           >
             <Link className="text-black" to="/">
               <img src={logo} alt="logo" 
-            className="w-40 h-40 rounded-full"
+            className=" w-28 h-28 rounded-full"
             /></Link>
           </a>
         </div>
