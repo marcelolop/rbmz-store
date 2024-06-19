@@ -11,7 +11,8 @@ function Links() {
                         <h3 className="text-lg font-semibold text-gray-200">
                             <p>Let's Connect and Chat!</p>
                             <p>We'd love to hear from you!</p> 
-                            <p>Your inquiries are important to us</p>
+                            <p className="mp-3">Your inquiries are important to us</p>
+                            <p className="items-center  text-blue-300"><li className='list-none'>Chat to us</li></p>
                         </h3>
                 </div>
 
@@ -23,7 +24,9 @@ function Links() {
                         <h3 className="text-lg font-semibold text-gray-200">
                             <p>Visit Our Office</p>
                             <p>you have the best shopping</p>
-                            <p>experience possible</p>      
+                            <p>experience possible</p>  
+                            <p className="mp-3  text-blue-300">12/A, Dunster Tower, Canada</p>    
+                           
                         </h3>
                 </div>
 
@@ -35,8 +38,10 @@ function Links() {
                         <h3 className="text-lg font-semibold text-gray-200">
                             <p>Give Us a Call</p>
                             <p>Need assistance? Have questions?</p>
-                            <p>We’re just a phone call away! </p>
+                            <p className="items-center">We’re just a phone call away! </p>
+                            <p className="items-center  text-blue-300">(123) 456-7890</p>
                         </h3>
+                        
                     </div>
                 </div>
     );
