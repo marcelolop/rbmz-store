@@ -20,8 +20,8 @@ const ProductCarousel = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 5,
+    slidesToShow: 4,
+    slidesToScroll: 4,
     swipeToSlide: true, // Allow slide with drag
     draggable: false, // Disable card drag
     responsive: [
@@ -52,14 +52,14 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 my-container">
       <h2 className="text-start  text-2xl font-bold mb-8"> 🔥Hot Products</h2>
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product.id} className="p-4">
             <Link
               to={`/products/${product.id}`}
-              className="block bg-white p-4 rounded-lg h-96 w-72 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
+              className="block bg-white p-4 rounded-lg h-96 w-100 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
             >
               <img
                 src={product.image}

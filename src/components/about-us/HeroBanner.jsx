@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function HeroBanner() {
   return (
     <>
-    <section className=" bg-gradient-to-b from-white to-blue-100  h-[900px] mb-[25px]">
+    <section className=" bg-gradient-to-b from-white to-blue-100 mb-[25px]">
         <div className="flex flex-col items-center pt-16 max-w-7xl mx-auto">
             <p className="text-blue-500 text-sm font-semibold pb-2">Shop Anytime, Anywhere</p>
             <div className="text-center">

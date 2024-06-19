@@ -51,14 +51,14 @@ const CategoryCarousel = () => {
   };
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 my-container">
       <h2 className="text-start  text-2xl font-bold mb-8">See All Categories</h2>
       <Slider {...settings}>
         {categories.map((category, index) => (
           <div key={index} className="p-4">
             <Link
               to={`/categories/${category}`}
-              className="block bg-white p-4 rounded-lg h-96 w-72 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
+              className="block bg-white p-4 rounded-lg h-96 w-100 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105"
             >
               <h3
                 className="text-lg font-bold mb-2 line-clamp-1"

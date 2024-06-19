@@ -109,7 +109,7 @@ function Products() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
     >
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 my-container">
         <div className="flex">
           <CategoryFilter category={state.category} setCategory={handleCategoryChange} />
           <div className="flex-1 ml-4">
