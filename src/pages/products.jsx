@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from "react";
+import axios from "axios";
 import CategoryFilter from "../components/products/CategoryFilter";
 import ProductCard from "../components/products/ProductCard";
 import ProductsSearchBar from "../components/products/ProductsSearchBar";
@@ -54,12 +55,12 @@ function Products() {
   const fetchProducts = () => {
     dispatch({ type: "SET_LOADING", payload: true });
     const url = state.category
-      ? `https://fakestoreapi.com/products/category/${state.category}`
-      : `https://fakestoreapi.com/products`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: "SET_PRODUCTS", payload: data });
+      ? `https://eletronicproductsrbmz.azurewebsites.net/api/products?category=${state.category}`
+      : `https://eletronicproductsrbmz.azurewebsites.net/api/products`;
+    axios
+      .get(url)
+      .then((response) => {
+        dispatch({ type: "SET_PRODUCTS", payload: response.data });
         dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch((error) => {
@@ -69,15 +70,19 @@ function Products() {
   };
 
   const filterProducts = () => {
-    const filtered = state.products.filter(
-      (product) =>
-        product.title.toLowerCase().includes(state.searchTerm.toLowerCase()) ||
-        product.description
-          .toLowerCase()
-          .includes(state.searchTerm.toLowerCase())
-    );
-    dispatch({ type: "SET_FILTERED_PRODUCTS", payload: filtered });
-    dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
+    if (state.products && state.products.length > 0) {
+      const filtered = state.products.filter(
+        (product) =>
+          (product.title && product.title.toLowerCase().includes(state.searchTerm.toLowerCase())) ||
+          (product.description && product.description.toLowerCase().includes(state.searchTerm.toLowerCase()))
+      );
+      dispatch({ type: "SET_FILTERED_PRODUCTS", payload: filtered });
+      dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
+    } else {
+      // Handle the case where state.products is still loading or empty
+      dispatch({ type: "SET_FILTERED_PRODUCTS", payload: [] });
+      dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
+    }
   };
 
   const paginate = (products) => {
@@ -95,9 +100,7 @@ function Products() {
     dispatch({ type: "SET_CURRENT_PAGE", payload: pageNumber });
   };
 
-  const totalPages = Math.ceil(
-    state.filteredProducts.length / state.itemsPerPage
-  );
+  const totalPages = Math.ceil(state.filteredProducts.length / state.itemsPerPage);
 
   return (
     <motion.div
@@ -108,16 +111,11 @@ function Products() {
     >
       <div className="container mx-auto p-4">
         <div className="flex">
-          <CategoryFilter
-            category={state.category}
-            setCategory={handleCategoryChange}
-          />
+          <CategoryFilter category={state.category} setCategory={handleCategoryChange} />
           <div className="flex-1 ml-4">
             <ProductsSearchBar
               searchTerm={state.searchTerm}
-              setSearchTerm={(term) =>
-                dispatch({ type: "SET_SEARCH_TERM", payload: term })
-              }
+              setSearchTerm={(term) => dispatch({ type: "SET_SEARCH_TERM", payload: term })}
               category={state.category || "All Products"}
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">

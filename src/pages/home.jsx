@@ -30,8 +30,7 @@ function Home() {
         <ShuffleHero />
         <CategoryCarousel products={products} />
         <ProductCarousel products={products} />
-        <Brand products={products} />
-
+        <Brand />
         <Offers />
       </main>
     </motion.main>

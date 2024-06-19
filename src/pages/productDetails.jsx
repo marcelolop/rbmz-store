@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import Rating from "react-rating-stars-component";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 function ProductDetails() {
-  const { id } = useParams();
+  const { categoryId, subcategoryId, productId } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProduct(data))
-      .catch((error) => console.error("Error fetching product:", error));
-  }, [id]);
+    fetchProduct();
+  }, [categoryId, subcategoryId, productId]);
+
+  const fetchProduct = async () => {
+    try {
+      const response = await axios.get(
+        `https://eletronicproductsrbmz.azurewebsites.net/api/products/${categoryId}/${subcategoryId}/${productId}`
+      );
+      setProduct(response.data);
+    } catch (error) {
+      console.error("Error fetching product:", error);
+    }
+  };
 
   if (!product) {
     return <div>Loading...</div>;
@@ -21,7 +29,7 @@ function ProductDetails() {
 
   const addToCart = (product) => {
     const cart = JSON.parse(localStorage.getItem("cart") || "{}");
-    cart[product.id] = (cart[product.id] || 0) + 1;
+    cart[product.productId] = (cart[product.productId] || 0) + 1;
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
@@ -38,40 +46,39 @@ function ProductDetails() {
             Products
           </Link>{" "}
           <span className="mx-2">/</span>{" "}
+          <Link className="hover:text-blue-500" to={`/products/${categoryId}`}>
+            {categoryId}
+          </Link>{" "}
+          <span className="mx-2">/</span>{" "}
           <Link
             className="hover:text-blue-500"
-            to={`/products/${product.category}`}
+            to={`/products/${categoryId}/${subcategoryId}`}
           >
-            {product.category}
+            {subcategoryId}
           </Link>{" "}
-          <span className="mx-2">/</span>
-          <Link to="#" className="text-blue-500">
-            {" "}
-            Product Details{" "}
-          </Link>
+          <span className="mx-2">/</span>{" "}
+          <span className="text-blue-500">{product.name}</span>
         </div>
-        <div className="flex flex-col sm:flex-row  justify-center items-center">
+        <div className="flex flex-col sm:flex-row justify-center items-center">
           <img
-            src={product.image}
-            alt={product.title}
+            src={product.imageUrl}
+            alt={product.name}
             className="w-full sm:w-1/3 object-cover mb-4 sm:mb-0 max-w-[250px] sm:mr-4"
           />
           <div className="sm:ml-4">
-            <h1 className="text-3xl font-bold mb-2 w-[500px] ">
-              {product.title}
-            </h1>
+            <h1 className="text-3xl font-bold mb-2 w-[500px] ">{product.name}</h1>
             <div className="flex justify-start items-center mb-4">
-              <p className="text-3xl font-bold ">${product.price.toFixed(2)}</p>{" "}
+              <p className="text-3xl font-bold">${product.price.toFixed(2)}</p>{" "}
               <div className="flex items-center ml-2">
                 <Rating
-                  value={product.rating.rate}
+                  value={product.rating}
                   numberOfStars={5}
                   size={20}
                   isHalf={true}
                   emptyColor="red"
                   filledColor="gold"
                 />
-                <p className="text-sm ml-2">({product.rating.count} reviews)</p>{" "}
+                <p className="text-sm ml-2">({product.reviewsCount} reviews)</p>{" "}
               </div>
             </div>
             <p className="text-gray-600 mb-4 text-sm w-[500px] ">

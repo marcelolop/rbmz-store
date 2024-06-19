@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-
-const categories = [
-  "electronics",
-  "jewelery",
-  "men's clothing",
-  "women's clothing",
-];
+import axios from "axios";
 
 function CategoryFilter({ category, setCategory }) {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get(
+        "https://eletronicproductsrbmz.azurewebsites.net/api/categories"
+      );
+      setCategories(response.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
+
   return (
     <aside className="p-4 rounded shadow h-[calc(100%-34px)]">
       <div className="flex justify-between items-center mb-4">
@@ -16,17 +27,17 @@ function CategoryFilter({ category, setCategory }) {
       </div>
       <ul className="space-y-2">
         {categories.map((cat) => (
-          <li key={cat} className="mb-2">
+          <li key={cat.id} className="mb-2">
             <button
               className={`block rounded-lg px-4 py-2 text-sm font-medium text-left transition-colors duration-200 ${
-                category === cat
+                category === cat.name
                   ? "bg-blue-500 text-white"
                   : "text-gray-500 hover:text-blue-500"
               }`}
-              onClick={() => setCategory(cat)}
-              aria-label={`Filter by ${cat}`}
+              onClick={() => setCategory(cat.name)}
+              aria-label={`Filter by ${cat.name}`}
             >
-              {cat}
+              {cat.name}
             </button>
           </li>
         ))}
