@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const ShuffleHero = () => {
   return (
-    <section className="w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
+    <section className="w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 my-container">
       <div>
         <span className="block mb-1 text-xs md:text-sm text-blue-500 font-medium">
           Better every day
