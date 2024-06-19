@@ -43,7 +43,7 @@ const Contact = () => {
         </section>
 
          {/* Links */}
-         <section className="w-screen h-full bg-blue-800 flex items-center justify-center p-20">
+         <section className="w-full h-full bg-blue-800 flex items-center justify-center p-20">
          <Links />
          </section>
 
