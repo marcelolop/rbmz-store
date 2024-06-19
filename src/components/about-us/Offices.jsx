@@ -1,7 +1,7 @@
 
 function Offices() {
   return (
-    <section className="mx-auto p-10 bg-blue-600 text-white font-sans pt-20 pb-20 mt-16">
+    <section className="mx-auto p-10 bg-blue-800 text-white font-sans pt-20 pb-20 mt-16">
         <div className="my-container w-[100%]">
             <div className="flex flex-col lg:flex-row justify-between w-[100%]">
                 <div className="mb-8 lg:mb-0 lg:w-1/3">

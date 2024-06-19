@@ -13,7 +13,7 @@ const Brands = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 my-container">
       <h2 className="text-start text-2xl font-bold mb-8">Choose by Brand</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {brands.map((brand) => (

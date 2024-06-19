@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import Modal from './ModalSubmit';
+import '../../styles/index.css'
 
 function Form() {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -18,11 +19,12 @@ function Form() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full mx-auto space-y-4">
-        <div className="h-13 mb-0"> 
+    <form onSubmit={handleSubmit(onSubmit)} className="mx-auto space-y-4 w-[70%]">
+        <div className="h-13 margin-top-zero"> 
+          <label className='block text-left mb-1 text-gray-600 text-sm'>First Name</label>
           <input 
             type="text" 
-            placeholder="First Name" 
+            placeholder="john" 
             {...register("First Name", { required: true, maxLength: 80 })} 
             className="block w-full px-4 py-2 mb-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -31,10 +33,11 @@ function Form() {
           </div>
          
         </div>
-        <div className="h-13">
-          <input 
+        <div className="h-13 margin-top-zero">
+        <label className='block text-left mb-1 text-gray-600 text-sm'>Last Name</label>
+        <input 
             type="text" 
-            placeholder="Last Name" 
+            placeholder="doe" 
             {...register("Last Name", { required: true, maxLength: 100 })} 
             className="block w-full px-4 py-2 mb-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -43,10 +46,11 @@ function Form() {
           </div>
          
         </div>
-        <div className="h-13">
+        <div className="h-13 margin-top-zero">
+        <label className='block text-left mb-1 text-gray-600 text-sm'>Email</label>
           <input 
             type="text" 
-            placeholder="Email" 
+            placeholder="johndoe@mail.com" 
             {...register("Email", { required: true, pattern: /^\S+@\S+$/i })} 
             className="block w-full px-4 py-2 mb-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -55,10 +59,11 @@ function Form() {
            </div>
         
         </div>
-        <div className="h-13">
+        <div className="h-13 margin-top-zero">
+        <label className='block text-left mb-1 text-gray-600 text-sm'>Phone</label>
           <input 
             type="tel" 
-            placeholder="Phone" 
+            placeholder="(123)-456-7890" 
             {...register("Phone", { required: true, maxLength: 12 })} 
             className="block w-full px-4 py-2  mb-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           />
@@ -67,9 +72,10 @@ function Form() {
           </div>
         </div>
 
-        <div className="h-35">
+        <div className="h-35 margin-top-zero">
+        <label className='block text-left mb-1 text-gray-600 text-sm'>How can we help?</label>
           <textarea 
-            placeholder="How can we help?"  
+            placeholder="tell us..."  
             {...register("How can we help?", { required: true, minLength: 10 })} 
             className="block w-full px-4 py-2  mb-1 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             rows="4"

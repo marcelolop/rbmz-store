@@ -29,7 +29,7 @@ function Header() {
   };
 
   return (
-    <header className=" bg-gradient-to-t from-white to-blue-100  p-4 w-full h-[100px] shadow-slate-200 flex items-center justify-center">
+    <header className=" bg-gradient-to-t from-white to-blue-100  p-4 h-[100px] shadow-slate-200 flex items-center justify-center">
       <div className="container mx-auto grid grid-cols-3 gap-4 items-center">
         <div className="col-span-1 flex items-center">
           <Link

@@ -32,7 +32,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="mx-auto max-w-3xl h-screen md:w-1/3 lg:w-2/4 md:pl-4 p-4 flex items-center justify-center">
               <div className="w-full mx-auto rounded-lg p-8 flex flex-col items-center justify-center h-full">
-                <p className="text-2xl mb-8">
+                <p className="text-2xl mb-8 text-balance">
                   Connect with us anytime – we're here to assist you with any
                   questions
                 </p>
@@ -43,7 +43,7 @@ const Contact = () => {
         </section>
 
          {/* Links */}
-         <section className="w-screen h-full bg-gradient-to-b from-white to-blue-100 flex items-center justify-center p-20">
+         <section className="w-screen h-full bg-blue-800 flex items-center justify-center p-20">
          <Links />
          </section>
 
