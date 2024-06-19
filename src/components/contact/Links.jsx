@@ -2,8 +2,8 @@ import '@fortawesome/fontawesome-free/css/all.css';
 
 function Links() {
     return (
-        <div className="flex flex-col items-center justify-center space-around gap-20 p-27 mt-0 mb-0">
-            <div className="text-gray-700 hover:text-blue-500 text-center h-500 w-200 transform transition-transform duration-300 hover:scale-105">
+        <div className="flex flex-row items-center justify-center space-around gap-10 p-27 mt-0 mb-0">
+            <div className="text-gray-700 hover:text-blue-500 text-center h-400 w-200 transform transition-transform duration-300 hover:scale-105">
                         <h1 href="#" className="block p-2">
                             <i className="fas fa-comments text-3xl mr-3 mb-8"></i>
                             Chat to us
@@ -46,4 +46,3 @@ function Links() {
   }
 
   export default Links;
-
