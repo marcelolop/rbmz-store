@@ -3,21 +3,21 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const ShuffleHero = () => {
+const HeroBanner = () => {
   return (
     <section className="w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 my-container">
       <div>
-        <span className="block mb-1 text-xs md:text-sm text-blue-500 font-medium">
+        <span className="block mb-1 text-[20px] md:text-[18px] text-blue-500 font-medium">
           Better every day
         </span>
         <h3 className="text-4xl md:text-6xl font-semibold">
-          Grab Up to 50% off Selected Electronics
+          Turn up your gaming with 50% off on all mouses and keyboards
         </h3>
         <p className="text-base md:text-lg text-slate-700 my-4 md:my-6">
-          Discover a world of exceptional electronics curated just for you
+          The gaming experience is not complete without a good setup.
         </p>
         <Link
-          href="/products"
+          to="/products"
           className="bg-blue-500 text-white font-medium py-3 px-6 rounded transition-all hover:bg-blue-600 active:scale-95 inline-block"
         >
           Buy Now
@@ -55,15 +55,27 @@ const ShuffleGrid = () => {
 
   const fetchImages = async () => {
     try {
-      const response = await axios.get(
-        "https://fakestoreapi.com/products/category/electronics?limit=16"
-      );
-      const data = response.data;
-      const squareData = data.map((item) => ({
-        id: item.id,
-        src: item.image,
+      const [responseMouses, responseKeyboards] = await Promise.all([
+        axios.get(
+          "https://eletronicproductsrbmz.azurewebsites.net/api/products/category/3/subcategory/1"
+        ),
+        axios.get(
+          "https://eletronicproductsrbmz.azurewebsites.net/api/products/category/3/subcategory/2"
+        ),
+      ]);
+
+      const mouses = responseMouses.data.map((item) => ({
+        id: item.productId,
+        src: item.imageUrl,
       }));
-      setSquares(shuffle(squareData));
+
+      const keyboards = responseKeyboards.data.map((item) => ({
+        id: item.productId,
+        src: item.imageUrl,
+      }));
+
+      const combinedData = shuffle([...mouses, ...keyboards]);
+      setSquares(combinedData);
     } catch (error) {
       console.error("Error fetching images:", error);
     }
@@ -75,13 +87,13 @@ const ShuffleGrid = () => {
   }, [squares]);
 
   return (
-    <div className="grid grid-cols-4 grid-rows-4 h-[450px] gap-1">
+    <div className="grid  grid-flow rounded grid-cols-4 grid-rows-4 h-[450px] gap-1">
       {squares.map((sq) => (
         <motion.div
           key={sq.id}
           layout
           transition={{ duration: 1.5, type: "spring" }}
-          className="w-full h-full"
+          className="w-full h-full rounded bg-cover bg-center"
           style={{
             backgroundImage: `url(${sq.src})`,
             backgroundSize: "cover",
@@ -92,4 +104,4 @@ const ShuffleGrid = () => {
   );
 };
 
-export default ShuffleHero;
+export default HeroBanner;

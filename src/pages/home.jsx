@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ShuffleHero from "../components/home/HeroBanner";
-import ProductCarousel from "../components/home/ProductCarousel";
+import KeyboardsCarousel from "../components/home/ProductCarousel";
 import CategoryCarousel from "../components/home/CategoryCarousel";
 import Brand from "../components/home/Brands";
 import Offers from "../components/products/Offers";
 import { motion } from "framer-motion";
+import BannerSection from "../components/home/BannerSection";
+import TVMonitorsCarousel from "../components/home/TVMonitorsCarousel";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -28,8 +30,10 @@ function Home() {
     >
       <main className="font-sans">
         <ShuffleHero />
-        <CategoryCarousel products={products} />
-        <ProductCarousel products={products} />
+        {/* <CategoryCarousel products={products} /> */}
+        <KeyboardsCarousel products={products} />
+        <BannerSection />
+        <TVMonitorsCarousel products={products} />
         <Brand />
         <Offers />
       </main>

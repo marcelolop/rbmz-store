@@ -20,7 +20,7 @@ const Brands = () => {
           <Link
             key={brand.brandId}
             to={`/brands/${brand.brandName}`}
-            className="block rounded-lg shadow hover:shadow-lg overflow-hidden"
+            className="block rounded-lg hover:shadow-lg overflow-hidden"
             style={{ textDecoration: "none" }}
           >
             <img
