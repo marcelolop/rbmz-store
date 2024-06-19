@@ -6,14 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const KeyboardsCarousel = () => {
+const TVMonitorsCarousel = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://eletronicproductsrbmz.azurewebsites.net/api/products/category/3/subcategory/2"
+          "https://eletronicproductsrbmz.azurewebsites.net/api/products/category/6"
         );
         setProducts(response.data);
       } catch (error) {
@@ -30,8 +30,8 @@ const KeyboardsCarousel = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
-    swipeToSlide: true, // Allow slide with drag
-    draggable: false, // Disable card drag
+    swipeToSlide: true,
+    draggable: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -61,7 +61,7 @@ const KeyboardsCarousel = () => {
 
   return (
     <div className="container mx-auto py-10 my-container">
-      <h2 className="text-start text-2xl font-bold mb-8">🔥 Keyboards</h2>
+      <h2 className="text-start text-2xl font-bold mb-8">🖥️ TV and Monitors</h2>
       <Slider {...settings}>
         {products.map((product) => (
           <div key={product.productId} className="p-4 center">
@@ -110,4 +110,4 @@ const KeyboardsCarousel = () => {
   );
 };
 
-export default KeyboardsCarousel;
+export default TVMonitorsCarousel;

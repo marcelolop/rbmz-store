@@ -3,32 +3,40 @@ import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Rating from "react-rating-stars-component";
+import axios from "axios";
 
 function SearchBar() {
   const [searchValue, setSearchValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
   const [results, setResults] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      if (searchValue) {
-        try {
-          const response = await fetch("https://fakestoreapi.com/products");
-          const data = await response.json();
-          const filteredResults = data.filter((item) =>
-            item.title.toLowerCase().includes(searchValue.toLowerCase())
-          );
-          setResults(filteredResults);
-        } catch (error) {
-          console.error("Error fetching data:", error);
-        }
-      } else {
-        setResults([]);
+    const fetchAllProducts = async () => {
+      try {
+        const response = await axios.get(
+          `https://eletronicproductsrbmz.azurewebsites.net/api/products`
+        );
+        const data = response.data;
+        setAllProducts(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
     };
 
-    fetchData();
-  }, [searchValue]);
+    fetchAllProducts();
+  }, []);
+
+  useEffect(() => {
+    if (searchValue) {
+      const filteredResults = allProducts.filter((item) =>
+        item.name.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setResults(filteredResults);
+    } else {
+      setResults([]);
+    }
+  }, [searchValue, allProducts]);
 
   const handleInputChange = (event) => {
     setSearchValue(event.target.value);
@@ -85,28 +93,33 @@ function SearchBar() {
           className="absolute top-full left-0 w-full bg-white shadow-lg border rounded-md mt-2 z-10 max-h-60 overflow-y-auto"
         >
           {results.slice(0, 5).map((item) => (
-            <Link to={`/product/${item.id}`} key={item.id}>
+            <Link
+              to={`/product/${item.categoryId}/${item.subcategoryId}/${item.productId}`}
+              key={item.productId}
+            >
               <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer">
                 <img
-                  src={item.image}
-                  alt={item.title}
+                  src={item.imageUrl}
+                  alt={item.name}
                   className="w-12 h-12 object-cover mr-2"
                 />
                 <div className="flex flex-col w-full">
-                  <span className="font-bold">{item.title}</span>
+                  <span className="font-bold">{item.name}</span>
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">${item.price}</span>
                     <div className="flex items-center">
                       <Rating
                         count={5}
-                        value={item.rating ? item.rating.rate : 0}
+                        value={item.rating}
                         size={16}
                         activeColor="#ffd700"
                         edit={false}
                         isHalf={true}
                         readonly={true}
                       />
-                      <span className="ml-2 text-gray-600">({item.rating.count})</span>
+                      <span className="ml-2 text-gray-600">
+                        ({item.reviewsCount})
+                      </span>
                     </div>
                   </div>
                 </div>
