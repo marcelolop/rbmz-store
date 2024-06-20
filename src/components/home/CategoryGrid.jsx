@@ -81,9 +81,9 @@ const CategoryGrid = () => {
       <Slider {...settings} className="my-3 my-container">
         {categories.map((category, index) => (
           <div key={category.id} className="p-2">
-            <div className={`relative rounded-lg border  hover:border-blue-500 hover:scale-105 transition-transform duration-300 overflow-hidden ${getCategoryColor(category.id)}`}>
+            <div className={`relative  hover:scale-105 transition-transform duration-300 overflow-hidden ${getCategoryColor(category.id)}`}>
               <Link to={`/categories/${category.id}`} className="block w-full h-full no-underline">
-                <img src={images[index % images.length]} alt={`${category.name} category`} className="w-full h-40 object-cover"/>
+                <img src={images[index % images.length]} alt={`${category.name} category`} className="w-full h-40 object-cover rounded-lg shadow-md"/>
                 <div className="p-4 text-center">
                   <h3 className="text-lg font-bold text-black mb-2">{category.name}</h3>
                 </div>
