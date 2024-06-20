@@ -8,6 +8,7 @@ import ProductDetails from "./pages/product-details";
 import Header from "./components/general/Header";
 import Footer from "./components/general/Footer";
 import { CartProvider } from "./components/ui/general/CartProvider";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
                 path="/products/:categoryId/:subcategoryId/:productId"
                 element={<ProductDetails />}
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </CartProvider>
