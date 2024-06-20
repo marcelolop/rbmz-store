@@ -30,28 +30,31 @@ function EmailSubscribeForm() {
   };
 
   return (
-    <form className="flex items-center w-full max-w-3xl" onSubmit={handleSubmit}>
-      <span className="text-gray-500 mr-4">Subscribe to our newsletter</span>
-      <div className="w-0.5 h-6 bg-gray-300 mr-4"></div>
-      <div className="flex items-center flex-auto bg-white rounded-full shadow-md overflow-hidden shadow-3d">
-        <input
-          type="email"
-          className="px-4 py-2 flex-grow text-black bg-white placeholder-slate-400 focus:outline-none rounded-l-full"
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          ref={emailRef}
-          required
-        />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white border-none px-4 py-2 rounded-full"
-        >
-          Subscribe
-        </button>
-      </div>
-      {message && <div className="text-green-500 absolute top-[100%] left-[50%]">{message}</div>}
-    </form>
+
+    <>
+      <form className="flex items-center w-full max-w-3xl" onSubmit={handleSubmit}>
+        <span className="text-gray-500 mr-4">Subscribe to our newsletter</span>
+        <div className="w-0.5 h-6 bg-gray-300 mr-4"></div>
+        <div className="flex items-center flex-auto overflow-hidden">
+          <input
+            type="email"
+            className="px-4 py-2 flex-grow text-black bg-transparent placeholder-gray-400 focus:outline-none border-b border-gray-200 transition-colors duration-200 focus:border-blue-500"
+            placeholder="Your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            ref={emailRef}
+            required
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white border-none px-4 py-2 rounded-md ml-5 mt-2"
+          >
+            Subscribe
+          </button>
+        </div>
+      </form>
+      {message && <div className="ml-4 text-green-500 mt-2">{message}</div>}
+    </>
   );
 }
 

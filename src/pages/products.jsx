@@ -60,11 +60,9 @@ function Products() {
 
     let url = "https://eletronicproductsrbmz.azurewebsites.net/api/products";
 
-    // If both category and subcategory are selected, adjust the URL
     if (state.category && state.subcategory) {
       url = `https://eletronicproductsrbmz.azurewebsites.net/api/products/category/${state.category}/subcategory/${state.subcategory}`;
     } else if (state.category) {
-      // Only category is selected
       url = `https://eletronicproductsrbmz.azurewebsites.net/api/products/category/${state.category}`;
     }
 
@@ -85,10 +83,8 @@ function Products() {
     const { products, searchTerm, category, subcategory } = state;
     if (products.length > 0) {
       const filtered = products.filter((product) => {
-        const matchesCategory =
-          !category || product.categoryId === category.categoryId;
-        const matchesSubcategory =
-          !subcategory || product.subcategoryId === subcategory.subcategoryId;
+        const matchesCategory = !category || product.categoryId === category;
+        const matchesSubcategory = !subcategory || product.subcategoryId === subcategory;
         const matchesSearchTerm =
           !searchTerm ||
           (product.name &&

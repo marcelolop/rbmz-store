@@ -29,8 +29,8 @@ function Header() {
   };
 
   return (
-    <header className=" bg-gradient-to-t from-white to-blue-100  p-4 h-[100px] shadow-slate-200 flex items-center justify-center">
-      <div className="container mx-auto grid grid-cols-3 gap-4 items-center">
+    <header className="bg-gradient-to-t from-white to-blue-100  p-4 h-[100px] shadow-slate-200 flex items-center justify-center">
+      <div className="my-container container mx-auto grid grid-cols-3 gap-4 items-center">
         <div className="col-span-1 flex items-center">
           <Link
             className="text-[50px] font-bold text-black hover:text-blue-500"
