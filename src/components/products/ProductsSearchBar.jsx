@@ -13,6 +13,10 @@ function ProductsSearchBar({ searchTerm, setSearchTerm, category }) {
     setIsFocused(false);
   };
 
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
   return (
     <div className="flex items-center justify-between mb-4">
       <div className="mr-4 text-xl text-gray-600 font-bold capitalize">
@@ -22,7 +26,10 @@ function ProductsSearchBar({ searchTerm, setSearchTerm, category }) {
         {category && (
           <>
             <span> &gt; </span>
-            <Link to={`/products/category/${category}`} className="hover:text-blue-500">
+            <Link
+              to={`/products/category/${category}`}
+              className="hover:text-blue-500"
+            >
               {category}
             </Link>
           </>
@@ -40,7 +47,7 @@ function ProductsSearchBar({ searchTerm, setSearchTerm, category }) {
           type="text"
           placeholder="Search products..."
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleChange}
           className={`px-4 py-2 w-full text-black bg-transparent placeholder-slate-400 focus:outline-none rounded-l-full transition-colors duration-500 ${
             isFocused ? "border-blue-500" : "border-transparent"
           }`}

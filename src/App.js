@@ -4,13 +4,12 @@ import Home from "./pages/home";
 import Products from "./pages/products";
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import ProductDetails from "./pages/productDetails";
+import ProductDetails from "./pages/product-details";
 import Header from "./components/general/Header";
 import Footer from "./components/general/Footer";
 import { CartProvider } from "./components/ui/general/CartProvider";
 
 function App() {
-
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -22,7 +21,10 @@ function App() {
               <Route path="/products" element={<Products />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
-              <Route path="/products/:category/:subcategory/:id" element={<ProductDetails />} />
+              <Route
+                path="/products/:categoryId/:subcategoryId/:productId"
+                element={<ProductDetails />}
+              />
             </Routes>
           </main>
         </CartProvider>

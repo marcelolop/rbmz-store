@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-function CategoryFilter({ category, setCategory }) {
+function CategoryFilter({ category, subcategory, setCategory, setSubcategory }) {
   const [categories, setCategories] = useState([]);
+  const [subcategories, setSubcategories] = useState([]);
 
   useEffect(() => {
     fetchCategories();
+    fetchSubcategories();
   }, []);
 
   const fetchCategories = async () => {
@@ -20,6 +22,37 @@ function CategoryFilter({ category, setCategory }) {
     }
   };
 
+  const fetchSubcategories = async () => {
+    try {
+      const response = await axios.get(
+        "https://eletronicproductsrbmz.azurewebsites.net/api/subcategories"
+      );
+      setSubcategories(response.data);
+    } catch (error) {
+      console.error("Error fetching subcategories:", error);
+    }
+  };
+
+  const getCategorySubcategories = (categoryId) => {
+    return subcategories.filter((sub) => sub.categoryId === categoryId);
+  };
+
+  const handleCategoryClick = (categoryId) => {
+    if (category === categoryId) {
+      // Deselect category if clicked again
+      setCategory(null);
+      setSubcategory(null);
+    } else {
+      // Select new category and reset subcategory
+      setCategory(categoryId);
+      setSubcategory(null);
+    }
+  };
+
+  const handleSubcategoryClick = (subcategoryId) => {
+    setSubcategory(subcategoryId);
+  };
+
   return (
     <aside className="p-4 rounded shadow h-[calc(100%-34px)]">
       <div className="flex justify-between items-center mb-4">
@@ -27,35 +60,47 @@ function CategoryFilter({ category, setCategory }) {
       </div>
       <ul className="space-y-2">
         {categories.map((cat) => (
-          <li key={cat.id} className="mb-2">
+          <li key={cat.categoryId} className="mb-2">
             <button
               className={`block rounded-lg px-4 py-2 text-sm font-medium text-left transition-colors duration-200 ${
-                category === cat.name
+                category === cat.categoryId
                   ? "bg-blue-500 text-white"
-                  : "text-gray-500 hover:text-blue-500"
+                  : "bg-transparent text-black hover:bg-blue-100"
               }`}
-              onClick={() => setCategory(cat.name)}
-              aria-label={`Filter by ${cat.name}`}
+              onClick={() => handleCategoryClick(cat.categoryId)}
             >
               {cat.name}
             </button>
+            {category === cat.categoryId && (
+              <ul className="ml-4 mt-2 space-y-1">
+                {getCategorySubcategories(cat.categoryId).map((sub) => (
+                  <li key={sub.subcategoryId}>
+                    <button
+                      className={`block rounded-lg px-4 py-2 text-sm font-medium text-left transition-colors duration-200 ${
+                        subcategory === sub.subcategoryId
+                          ? "bg-blue-400 text-white"
+                          : "bg-transparent text-black hover:bg-blue-100"
+                      }`}
+                      onClick={() => handleSubcategoryClick(sub.subcategoryId)}
+                    >
+                      {sub.name}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </li>
         ))}
       </ul>
-      <button
-        className="p-2 rounded text-black font-[600] transition-colors duration-200 hover:text-blue-500"
-        onClick={() => setCategory(null)}
-        aria-label="Clear filter"
-      >
-        Clear Filter
-      </button>
     </aside>
   );
 }
 
 CategoryFilter.propTypes = {
-  category: PropTypes.string,
+  category: PropTypes.number,
+  subcategory: PropTypes.number,
   setCategory: PropTypes.func.isRequired,
+  setSubcategory: PropTypes.func.isRequired,
 };
 
 export default CategoryFilter;

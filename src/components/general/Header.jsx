@@ -90,9 +90,9 @@ function Header() {
                 setIsCartHovered(false);
               }}
             >
-              <div className="relative flex items-center hover:text-white justify-center">
+              <div className="relative flex items-center justify-center">
                 <Cart
-                  className="cursor-pointer w-5 h-5 mb-[6px] hover:text-white"
+                  className="cursor-pointer w-5 h-5 mb-[6px]"
                 />
               </div>
             </Tab>
