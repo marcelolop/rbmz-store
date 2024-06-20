@@ -30,6 +30,7 @@ function EmailSubscribeForm() {
   };
 
   return (
+
     <>
       <form className="flex items-center w-full max-w-3xl" onSubmit={handleSubmit}>
         <span className="text-gray-500 mr-4">Subscribe to our newsletter</span>

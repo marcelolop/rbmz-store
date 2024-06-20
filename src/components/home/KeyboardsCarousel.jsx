@@ -61,7 +61,7 @@ const KeyboardsCarousel = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 my-container">
+    <div className="container mx-auto py-20 my-container">
         <h2 className="text-center text-2xl font-bold mb-2"> Keyboards</h2>
       <Slider {...settings} className="my-3">
         {products.map((product) => (

@@ -4,7 +4,7 @@ import { LiaCoinsSolid } from "react-icons/lia";
 
 function Offers() {
   return (
-    <section className="mx-auto bg-blue-800 p-10 text-white font-sans pt-20 pb-20 mt-16">
+    <section className="mx-auto bg-blue-800 text-white font-sans pt-20 pb-20 mt-16">
       <div className="container mx-auto px-4 my-container">
         <div className="flex flex-col lg:flex-row justify-between items-center gap-5">
           <div className="flex flex-col items-center mb-8 lg:mb-0 lg:w-1/3">

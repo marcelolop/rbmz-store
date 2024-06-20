@@ -148,11 +148,11 @@ function Products() {
               }
               category={state.category || "All Products"}
             />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {paginate(state.filteredProducts).map((product) => (
-                <ProductCard key={product.productId} product={product} />
-              ))}
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {paginate(state.filteredProducts).map((product) => (
+              <ProductCard key={product.productId} product={product} />
+            ))}
+          </div>
             {state.loading && (
               <div className="text-center mt-4">
                 <span>Loading...</span>
