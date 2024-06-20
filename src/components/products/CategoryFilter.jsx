@@ -54,7 +54,7 @@ function CategoryFilter({ category, subcategory, setCategory, setSubcategory }) 
   };
 
   return (
-    <aside className="p-4 rounded shadow h-[calc(100%-34px)]">
+    <aside className="px-4 pt-2 h-[calc(100%-34px)]">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Categories</h2>
       </div>
