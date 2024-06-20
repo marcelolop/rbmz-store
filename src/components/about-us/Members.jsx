@@ -1,7 +1,7 @@
 
 function Members() {
   return (
-    <section className='my-container'>
+    <section className='my-container mt-28'>
     <div className="flex flex-col items-center py-10">
             <p className="text-blue-500 text-sm font-semibold pb-2">Our Team</p>
             <div className="text-center">
