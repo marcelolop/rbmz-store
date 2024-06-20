@@ -8,11 +8,9 @@ function Cart({ hover }) {
   return (
     <div className="relative flex items-center justify-center">
       <FaShoppingCart
-        className={`cursor-pointer w-5 h-5  ${
-          hover ? "text-white" : "text-black"
-        }`}
+        className="cursor-pointer w-5 h-5"
       />
-      <span className="absolute mb-[6px] bottom-2 left-4 bg-blue-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+      <span className="absolute mb-[6px] bottom-2 left-4 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
         {count}
       </span>
     </div>
