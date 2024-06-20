@@ -30,7 +30,6 @@ function EmailSubscribeForm() {
   };
 
   return (
-    <>
     <form className="flex items-center w-full max-w-3xl" onSubmit={handleSubmit}>
       <span className="text-gray-500 mr-4">Subscribe to our newsletter</span>
       <div className="w-0.5 h-6 bg-gray-300 mr-4"></div>
@@ -51,9 +50,8 @@ function EmailSubscribeForm() {
           Subscribe
         </button>
       </div>
+      {message && <div className="text-green-500 absolute top-[100%] left-[50%]">{message}</div>}
     </form>
-    {message && <div className="ml-4 text-green-500 h-4 w-48">{message}</div>}
-    </>
   );
 }
 

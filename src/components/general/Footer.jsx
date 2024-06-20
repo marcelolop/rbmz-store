@@ -108,8 +108,8 @@ function Footer() {
           </div>
         </div>
       </div>
-      <div className="mt-8 w-full flex justify-center items-center">
-        <EmailSubscribeForm />
+      <div className="mt-8 w-full flex justify-center items-center relative pb-3">
+      <EmailSubscribeForm />
       </div>
     </footer>
   );

@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import imageOne from '../../media/images/category-one.jpg';
+import imageTwo from '../../media/images/category-two.jpg';
+import imageThree from '../../media/images/category-three.jpg';
+import imageFour from '../../media/images/category-four.jpg';
+import imageFive from '../../media/images/category-five.jpg';
 
 const CategoryGrid = () => {
   const [categories, setCategories] = useState([]);
+  const images = [imageFive, imageOne, imageTwo, imageThree, imageFour];
 
   useEffect(() => {
     axios
@@ -12,7 +19,6 @@ const CategoryGrid = () => {
       .catch((error) => console.error(error));
   }, []);
 
-  // Função para obter a cor com base no ID da categoria
   const getCategoryColor = (categoryId) => {
     switch (categoryId) {
       case 3:
@@ -30,21 +36,58 @@ const CategoryGrid = () => {
     }
   };
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    swipeToSlide: true,
+    draggable: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="container mx-auto py-10">
-      <h2 className="text-2xl font-bold mb-8 text-center">See All Categories</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {categories.map((category) => (
-          <div key={category.id} className={`relative rounded-lg border border-gray-200 overflow-hidden ${getCategoryColor(category.id)}`}>
-            <Link to={`/categories/${category.id}`} className="block w-full h-full no-underline">
-              <div className="p-4 text-center">
-                <h3 className="text-lg font-bold text-black mb-2">{category.name}</h3>
-                <p className="text-sm text-gray-600">Click to view more</p>
-              </div>
-            </Link>
+    <div className="container mx-auto py-20 bg-slate-100">
+      <h2 className="text-2xl font-bold mb-8 text-center">Categories</h2>
+      <Slider {...settings} className="my-3 my-container">
+        {categories.map((category, index) => (
+          <div key={category.id} className="p-2">
+            <div className={`relative rounded-lg border border-gray-200 overflow-hidden ${getCategoryColor(category.id)}`}>
+              <Link to={`/categories/${category.id}`} className="block w-full h-full no-underline">
+                <img src={images[index % images.length]} alt={`${category.name} category`} className="w-full h-40 object-cover"/>
+                <div className="p-4 text-center">
+                  <h3 className="text-lg font-bold text-black mb-2">{category.name}</h3>
+                </div>
+              </Link>
+            </div>
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };

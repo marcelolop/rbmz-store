@@ -15,15 +15,15 @@ function ProductCard({ product }) {
       <img
         src={product.imageUrl}
         alt={product.name}
-        className="w-full h-48 object-contain mb-2 rounded-lg"
+        className="w-full h-48 object-contain mb-2 rounded-lg bg-gray-100"
       />
       <h2
-        className="text-lg mb-8 text-center w-full overflow-hidden text-ellipsis whitespace-nowrap"
+        className="text-lg mb-0 text-center w-full overflow-hidden text-ellipsis whitespace-nowrap"
         title={product.name}
       >
         {product.name}
       </h2>
-      <div className="flex flex-row justify-between w-full m-3">
+      <div className="flex flex-row justify-center w-full">
         <div className="flex flex-col space-x-2">
           <div className="flex items-center">
             <Rating
