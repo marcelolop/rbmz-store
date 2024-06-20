@@ -52,7 +52,6 @@ function SearchBar() {
   };
 
   const handleBlur = () => {
-    // Utilizar timeout para garantir que o clique no resultado seja registrado antes de esconder o dropdown
     setTimeout(() => setIsFocused(false), 200);
   };
 
@@ -60,7 +59,7 @@ function SearchBar() {
     <div className="relative w-full">
       <form
         onSubmit={handleSearchSubmit}
-        className={`flex items-center overflow-hidden transition-colors duration-700 w-100  ${
+        className={`flex items-center overflow-hidden transition-colors duration-700 w-100 ${
           isFocused ? "border-blue-500" : "border-gray-200"
         }`}
         onFocus={handleFocus}
@@ -94,7 +93,7 @@ function SearchBar() {
         >
           {results.slice(0, 5).map((item) => (
             <Link
-              to={`/product/${item.categoryId}/${item.subcategoryId}/${item.productId}`}
+              to={`/products/${item.categoryId}/${item.subcategoryId}/${item.productId}`}
               key={item.productId}
             >
               <div className="flex items-center p-2 hover:bg-gray-100 cursor-pointer">

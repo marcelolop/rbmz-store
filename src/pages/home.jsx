@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ShuffleHero from "../components/home/HeroBanner";
-import KeyboardsCarousel from "../components/home/ProductCarousel";
-import CategoryCarousel from "../components/home/CategoryCarousel";
+import KeyboardsCarousel from "../components/home/KeyboardsCarousel";
+import CategoryGrid from "../components/home/CategoryGrid";
 import Brand from "../components/home/Brands";
 import Offers from "../components/products/Offers";
 import { motion } from "framer-motion";
@@ -22,22 +22,21 @@ function Home() {
   }, []);
 
   return (
-    <motion.main
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 1.5 }}
     >
-      <main className="font-sans">
+      
         <ShuffleHero />
-        {/* <CategoryCarousel products={products} /> */}
+        <CategoryGrid products={products} />
         <KeyboardsCarousel products={products} />
         <BannerSection />
         <TVMonitorsCarousel products={products} />
         <Brand />
         <Offers />
-      </main>
-    </motion.main>
+    </motion.div>
   );
 }
 

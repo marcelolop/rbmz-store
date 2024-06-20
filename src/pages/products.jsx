@@ -12,6 +12,7 @@ const initialState = {
   filteredProducts: [],
   loading: false,
   category: null,
+  subcategory: null,
   searchTerm: "",
   currentPage: 1,
   itemsPerPage: 12,
@@ -26,7 +27,9 @@ function reducer(state, action) {
     case "SET_LOADING":
       return { ...state, loading: action.payload };
     case "SET_CATEGORY":
-      return { ...state, category: action.payload };
+      return { ...state, category: action.payload, subcategory: null };
+    case "SET_SUBCATEGORY":
+      return { ...state, subcategory: action.payload };
     case "SET_SEARCH_TERM":
       return { ...state, searchTerm: action.payload };
     case "SET_CURRENT_PAGE":
@@ -46,21 +49,30 @@ function Products() {
 
   useEffect(() => {
     fetchProducts();
-  }, [state.category]);
+  }, [state.category, state.subcategory]);
 
   useEffect(() => {
     filterProducts();
-  }, [state.products, state.searchTerm]);
+  }, [state.products, state.searchTerm, state.category, state.subcategory]);
 
   const fetchProducts = () => {
     dispatch({ type: "SET_LOADING", payload: true });
-    const url = state.category
-      ? `https://eletronicproductsrbmz.azurewebsites.net/api/products?category=${state.category}`
-      : `https://eletronicproductsrbmz.azurewebsites.net/api/products`;
+
+    let url = "https://eletronicproductsrbmz.azurewebsites.net/api/products";
+
+    // If both category and subcategory are selected, adjust the URL
+    if (state.category && state.subcategory) {
+      url = `https://eletronicproductsrbmz.azurewebsites.net/api/products/category/${state.category}/subcategory/${state.subcategory}`;
+    } else if (state.category) {
+      // Only category is selected
+      url = `https://eletronicproductsrbmz.azurewebsites.net/api/products/category/${state.category}`;
+    }
+
     axios
       .get(url)
       .then((response) => {
         dispatch({ type: "SET_PRODUCTS", payload: response.data });
+        dispatch({ type: "SET_FILTERED_PRODUCTS", payload: response.data });
         dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch((error) => {
@@ -70,19 +82,41 @@ function Products() {
   };
 
   const filterProducts = () => {
-    if (state.products && state.products.length > 0) {
-      const filtered = state.products.filter(
-        (product) =>
-          (product.title && product.title.toLowerCase().includes(state.searchTerm.toLowerCase())) ||
-          (product.description && product.description.toLowerCase().includes(state.searchTerm.toLowerCase()))
-      );
+    const { products, searchTerm, category, subcategory } = state;
+    if (products.length > 0) {
+      const filtered = products.filter((product) => {
+        const matchesCategory =
+          !category || product.categoryId === category.categoryId;
+        const matchesSubcategory =
+          !subcategory || product.subcategoryId === subcategory.subcategoryId;
+        const matchesSearchTerm =
+          !searchTerm ||
+          (product.name &&
+            product.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (product.description &&
+            product.description
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase()));
+        return matchesCategory && matchesSubcategory && matchesSearchTerm;
+      });
       dispatch({ type: "SET_FILTERED_PRODUCTS", payload: filtered });
       dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
     } else {
-      // Handle the case where state.products is still loading or empty
       dispatch({ type: "SET_FILTERED_PRODUCTS", payload: [] });
       dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
     }
+  };
+
+  const handleCategoryChange = (category) => {
+    dispatch({ type: "SET_CATEGORY", payload: category });
+  };
+
+  const handleSubcategoryChange = (subcategory) => {
+    dispatch({ type: "SET_SUBCATEGORY", payload: subcategory });
+  };
+
+  const handlePageChange = (pageNumber) => {
+    dispatch({ type: "SET_CURRENT_PAGE", payload: pageNumber });
   };
 
   const paginate = (products) => {
@@ -91,16 +125,9 @@ function Products() {
     return products.slice(startIndex, endIndex);
   };
 
-  const handleCategoryChange = (category) => {
-    dispatch({ type: "SET_CATEGORY", payload: category });
-    dispatch({ type: "SET_PRODUCTS", payload: [] });
-  };
-
-  const handlePageChange = (pageNumber) => {
-    dispatch({ type: "SET_CURRENT_PAGE", payload: pageNumber });
-  };
-
-  const totalPages = Math.ceil(state.filteredProducts.length / state.itemsPerPage);
+  const totalPages = Math.ceil(
+    state.filteredProducts.length / state.itemsPerPage
+  );
 
   return (
     <motion.div
@@ -111,16 +138,23 @@ function Products() {
     >
       <div className="container mx-auto p-4 my-container">
         <div className="flex">
-          <CategoryFilter category={state.category} setCategory={handleCategoryChange} />
+          <CategoryFilter
+            category={state.category}
+            subcategory={state.subcategory}
+            setCategory={handleCategoryChange}
+            setSubcategory={handleSubcategoryChange}
+          />
           <div className="flex-1 ml-4">
             <ProductsSearchBar
               searchTerm={state.searchTerm}
-              setSearchTerm={(term) => dispatch({ type: "SET_SEARCH_TERM", payload: term })}
+              setSearchTerm={(term) =>
+                dispatch({ type: "SET_SEARCH_TERM", payload: term })
+              }
               category={state.category || "All Products"}
             />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {paginate(state.filteredProducts).map((product) => (
-                <ProductCard key={product.id} product={product} />
+                <ProductCard key={product.productId} product={product} />
               ))}
             </div>
             {state.loading && (

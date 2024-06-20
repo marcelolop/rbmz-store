@@ -6,14 +6,14 @@ import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const TVMonitorsCarousel = () => {
+const CategoryProductsCarousel = ({ categoryId }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://eletronicproductsrbmz.azurewebsites.net/api/products/category/6"
+          `https://eletronicproductsrbmz.azurewebsites.net/api/products/category/${categoryId}`
         );
         setProducts(response.data);
       } catch (error) {
@@ -22,7 +22,7 @@ const TVMonitorsCarousel = () => {
     };
 
     fetchProducts();
-  }, []);
+  }, [categoryId]);
 
   const settings = {
     dots: true,
@@ -30,8 +30,8 @@ const TVMonitorsCarousel = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
-    swipeToSlide: true,
-    draggable: false,
+    swipeToSlide: true, // Allow slide with drag
+    draggable: false, // Disable card drag
     responsive: [
       {
         breakpoint: 1024,
@@ -60,12 +60,12 @@ const TVMonitorsCarousel = () => {
   };
 
   return (
-    <div className="container mx-auto py-10 my-container">
-      <h2 className="text-center text-2xl font-bold mb-2">TV and Monitors</h2>
-      <Slider {...settings} className=" my-3">
+    <div className="container mx-auto p-10 my-container">
+      <h2 className="text-start text-2xl font-bold mb-8">Related Products</h2>
+      <Slider {...settings}>
         {products.map((product) => (
           <div key={product.productId} className="p-4 center">
-            <div className="block bg-white p-4 rounded-lg h-96 w-100 mx-2 no-underline shadow-sm transform transition duration-500 ease-in-out hover:scale-105">
+            <div className="block bg-white p-4 rounded-lg h-96 w-100 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105">
               <img
                 src={product.imageUrl}
                 alt={product.name}
@@ -97,7 +97,7 @@ const TVMonitorsCarousel = () => {
                 <p className="text-xl font-semibold">${product.price}</p>
               </div>
               <Link
-                to={`/products/${product.categoryId}/${product.subcategoryId}/${product.productId}`}
+                to={`/products/${product.productId}`}
                 className="w-full text-center mt-4 inline-block bg-blue-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-blue-600 active:scale-95"
               >
                 View Details
@@ -110,4 +110,4 @@ const TVMonitorsCarousel = () => {
   );
 };
 
-export default TVMonitorsCarousel;
+export default CategoryProductsCarousel;

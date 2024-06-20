@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const HeroBanner = () => {
   return (
-    <section className="w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 my-container">
+    <section className="w-full mb-20 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 my-container">
       <div>
         <span className="block mb-1 text-[20px] md:text-[18px] text-blue-500 font-medium">
           Better every day

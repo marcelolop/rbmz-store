@@ -1,4 +1,3 @@
-import memberFour from '../../media/images/member-4.jpg';
 
 function Members() {
   return (
