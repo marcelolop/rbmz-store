@@ -16,7 +16,7 @@ const CustomerReviews = () => {
 
   return (
     <motion.div
-      className="border-b-2 p-4 border-gray-100"
+      className="p-4 "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -31,13 +31,13 @@ const CustomerReviews = () => {
             <summary className="text-lg font-bold">Reviews</summary>
             {reviews.map((review, index) => (
               <motion.div
-                className="border-b-2 p-4 border-gray-100"
+                className="p-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 1 }}
               >
-                <div key={index} className=" border-b-2 p-4 border-gray-100">
+                <div key={index} className=" p-4 border-b-2 border-gray-100">
                   <div className="flex items-center mb-2">
                     <div className="flex mr-3">
                       {[...Array(5)].map((_, i) => (

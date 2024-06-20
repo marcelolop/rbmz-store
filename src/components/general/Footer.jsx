@@ -111,6 +111,9 @@ function Footer() {
       <div className="mt-8 w-full flex justify-center items-center relative pb-3">
       <EmailSubscribeForm />
       </div>
+      <div className="text-center text-gray-500 text-sm mt-10">
+        &copy; {new Date().getFullYear()} Your Company Name. All rights reserved.
+      </div>
     </footer>
   );
 }
