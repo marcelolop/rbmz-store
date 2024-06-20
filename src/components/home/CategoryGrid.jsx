@@ -44,6 +44,7 @@ const CategoryGrid = () => {
     slidesToScroll: 4,
     swipeToSlide: true,
     draggable: false,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -52,6 +53,7 @@ const CategoryGrid = () => {
           slidesToScroll: 3,
           infinite: true,
           dots: true,
+          arrows: false,
         },
       },
       {
@@ -59,6 +61,7 @@ const CategoryGrid = () => {
         settings: {
           slidesToShow: 2,
           slidesToScroll: 2,
+          arrows: false,
         },
       },
       {
@@ -66,14 +69,15 @@ const CategoryGrid = () => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          arrows: false,
         },
       },
     ],
   };
 
   return (
-    <div className="container mx-auto py-20 bg-slate-100">
-      <h2 className="text-2xl font-bold mb-8 text-center">Categories</h2>
+    <div className="py-20 bg-slate-100">
+      <h2 className="text-4xl font-bold mb-8 text-center">Categories</h2>
       <Slider {...settings} className="my-3 my-container">
         {categories.map((category, index) => (
           <div key={category.id} className="p-2">

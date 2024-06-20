@@ -53,7 +53,7 @@ function EmailSubscribeForm() {
           </button>
         </div>
       </form>
-      {message && <div className="ml-4 text-green-500 mt-2">{message}</div>}
+      {message && <div className="text-green-500 absolute top-[100%] left-[50%]">{message}</div>}
     </>
   );
 }

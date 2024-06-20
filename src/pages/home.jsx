@@ -29,13 +29,13 @@ function Home() {
       transition={{ duration: 1.5 }}
     >
       
-        <ShuffleHero />
-        <CategoryGrid products={products} />
-        <KeyboardsCarousel products={products} />
-        <BannerSection />
-        <TVMonitorsCarousel products={products} />
-        <Brand />
-        <Offers />
+      <ShuffleHero />
+      <CategoryGrid products={products} />
+      <KeyboardsCarousel products={products} />
+      <BannerSection />
+      <TVMonitorsCarousel products={products} />
+      <Brand />
+      <Offers />
     </motion.div>
   );
 }
