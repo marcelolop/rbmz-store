@@ -6,19 +6,19 @@ import { Link } from "react-router-dom";
 const HeroBanner = () => {
   return (
     <section className="w-full mb-20 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 my-container">
-      <div>
+      <div className="flex flex-col justify-evenly h-full">
         <span className="block mb-1 text-[20px] md:text-[18px] text-blue-500 font-medium">
           Better every day
         </span>
-        <h3 className="text-4xl md:text-6xl font-semibold">
-          Turn up your gaming with 50% off on all mouses and keyboards
+        <h3 className="text-4xl md:text-5xl font-semibold">
+          Turn up your gaming with 50% off on all accessories
         </h3>
         <p className="text-base md:text-lg text-slate-700 my-4 md:my-6">
-          The gaming experience is not complete without a good setup.
+          The gaming experience is not complete without a good setup. Offers only for this weekend.
         </p>
         <Link
           to="/products"
-          className="bg-blue-500 text-white font-medium py-3 px-6 rounded transition-all hover:bg-blue-600 active:scale-95 inline-block"
+          className="w-[125px] text-center mt-14 bg-blue-500 text-white font-medium py-3 px-6 rounded transition-all hover:bg-blue-600 active:scale-95 inline-block"
         >
           Buy Now
         </Link>
