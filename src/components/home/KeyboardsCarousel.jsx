@@ -5,7 +5,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FaKeyboard } from "react-icons/fa";
 
 const KeyboardsCarousel = () => {
   const [products, setProducts] = useState([]);
@@ -62,11 +61,14 @@ const KeyboardsCarousel = () => {
 
   return (
     <div className="container mx-auto py-20 my-container">
-        <h2 className="text-center text-2xl font-bold mb-2"> Keyboards</h2>
-      <Slider {...settings} className="my-3">
+      <h2 className="text-center text-4xl font-bold">Keyboards</h2>
+      <Slider {...settings} className="my-2">
         {products.map((product) => (
-          <div key={product.productId} className="p-4 center">
-            <div className="block bg-white p-4 rounded-lg h-96 w-100 mx-2 no-underline shadow-sm transform transition duration-500 ease-in-out hover:scale-105">
+          <div key={product.productId} className="p-4">
+            <Link
+              to={`/products/${product.categoryId}/${product.subcategoryId}/${product.productId}`}
+              className="block bg-white p-4 rounded-lg h-75 w-100 mx-2 no-underline shadow-sm transform transition duration-500 ease-in-out hover:scale-105"
+            >
               <img
                 src={product.imageUrl}
                 alt={product.name}
@@ -95,15 +97,9 @@ const KeyboardsCarousel = () => {
                     );
                   })}
                 </div>
-                <p className="text-xl font-semibold">${product.price}</p>
+                <p className="text-[#4a85f2] text-xl font-semibold">${product.price}</p>
               </div>
-              <Link
-                to={`/products/${product.categoryId}/${product.subcategoryId}/${product.productId}`}
-                className="w-full text-center mt-4 inline-block bg-blue-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-blue-600 active:scale-95"
-              >
-                View Details
-              </Link>
-            </div>
+            </Link>
           </div>
         ))}
       </Slider>

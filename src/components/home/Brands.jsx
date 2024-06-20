@@ -14,7 +14,7 @@ const Brands = () => {
 
   return (
     <div className=" mx-auto py-10">
-      <h2 className="text-center text-2xl font-bold mb-10">Choose by Brand</h2>
+      <h2 className="text-center text-4xl font-bold mb-10">Choose by Brand</h2>
       <div className="relative overflow-hidden">
         <div className="flex animate-marquee justify-center">
           {brands.concat(brands).map((brand, index) => (

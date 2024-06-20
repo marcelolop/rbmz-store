@@ -32,7 +32,7 @@ const BannerSection = () => {
                 <p className="text-lg text-center">The best keyboards for gaming</p>
                 <Link
                   to="/products/category/3/subcategory/2"
-                  className="bg-[#27c200] hover:bg-blue-600 text-white px-4 py-2 rounded mt-4 transition-colors duration-300"
+                  className="bg-[#27c200] hover:bg-blue-600 text-white px-4 py-3 rounded mt-4 transition-colors duration-300"
                 >
                   See More
                 </Link>
