@@ -33,7 +33,7 @@ function Members() {
                 </div>
                 <div className='w-[25%]'>
                     <img src='https://avatars.githubusercontent.com/u/146753820?v=4' alt='fourth member'/>
-                    <p className='name'>Ted Norton</p>
+                    <p className='name'>Zhixin Liu</p>
                     <p className='position'>Sales Manager</p>
                     <p className='history'>Have helped sell clients products for over 8 years and directed sales teams</p>
                 </div>
