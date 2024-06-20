@@ -30,8 +30,8 @@ const CategoryProductsCarousel = ({ categoryId }) => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 4,
-    swipeToSlide: true, // Allow slide with drag
-    draggable: false, // Disable card drag
+    swipeToSlide: true,
+    draggable: false,
     responsive: [
       {
         breakpoint: 1024,
@@ -60,12 +60,14 @@ const CategoryProductsCarousel = ({ categoryId }) => {
   };
 
   return (
-    <div className="container mx-auto p-10 my-container">
-      <h2 className="text-start text-2xl font-bold mb-8">Related Products</h2>
-      <Slider {...settings}>
+    <div className="container mx-auto py-20 my-container">
+      <Slider {...settings} className="my-2">
         {products.map((product) => (
-          <div key={product.productId} className="p-4 center">
-            <div className="block bg-white p-4 rounded-lg h-96 w-100 mx-2 no-underline border border-gray-200 transform transition duration-500 ease-in-out hover:scale-105">
+          <div key={product.productId} className="p-4">
+            <Link
+              to={`/products/${product.categoryId}/${product.subcategoryId}/${product.productId}`}
+              className="block bg-white p-4 rounded-lg h-75 w-100 mx-2 no-underline shadow-sm transform transition duration-500 ease-in-out hover:scale-105"
+            >
               <img
                 src={product.imageUrl}
                 alt={product.name}
@@ -79,30 +81,19 @@ const CategoryProductsCarousel = ({ categoryId }) => {
               </h3>
               <div className="flex justify-between items-center mt-2">
                 <div className="flex">
-                  {[...Array(5)].map((star, i) => {
-                    const ratingValue = i + 1;
-                    return (
-                      <FaStar
-                        key={i}
-                        className={
-                          product.rating >= ratingValue
-                            ? "text-yellow-500"
-                            : "text-gray-300"
-                        }
-                        size={20}
-                      />
-                    );
-                  })}
+                  {[...Array(5)].map((star, i) => (
+                    <FaStar
+                      key={i}
+                      className={
+                        product.rating >= i + 1 ? "text-yellow-500" : "text-gray-300"
+                      }
+                      size={20}
+                    />
+                  ))}
                 </div>
                 <p className="text-xl font-semibold">${product.price}</p>
               </div>
-              <Link
-                to={`/products/${product.productId}`}
-                className="w-full text-center mt-4 inline-block bg-blue-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-blue-600 active:scale-95"
-              >
-                View Details
-              </Link>
-            </div>
+            </Link>
           </div>
         ))}
       </Slider>
